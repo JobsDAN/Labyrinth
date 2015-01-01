@@ -7,22 +7,28 @@
 
 using namespace std;
 
-int const n = 2;
-int const m = 3;
-void printLocation(char a[m][n])
+int const N = 5;
+int const M = 6;
+
+void printLocation(char a[M][N])
 {
-  for (int i = 0; i < m; i++)
+  for (int i = 0; i < M; i++)
   {
-    for (int j = 0; j < n; j++)
+    for (int j = 0; j < N; j++)
       cout << a[i][j];
     cout << "\n";
   }      
   return;
 }
+
 int main ()
 {
-  char a[m][n] = {{'#'}};
+  char a[M][N] = {'#', '#', '#', '#', '#',
+                  '#', ' ', ' ', ' ', '#',
+                  '#', ' ', ' ', ' ', '#',
+                  '#', ' ', ' ', ' ', '#',
+                  '#', '#', '#', '/', '#'};
   printLocation(a);
-  system("Pause");
+  getch();
   return 0;
 }
