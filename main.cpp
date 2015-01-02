@@ -1,7 +1,9 @@
 #include <iostream>
-#ifdef __linux__ 
+#ifdef __linux__
+	#define Windows 0
 	#include "conio_l.cpp"
 #elif _WIN32
+	#define Windows 1
 	#include <conio.h>
 #endif
 
