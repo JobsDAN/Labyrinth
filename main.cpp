@@ -12,7 +12,7 @@ using namespace std;
 
 int const N = 5;
 int const M = 6;
-
+int const ESC = 27;
 enum Direction
 {
   UP = -N,
@@ -27,31 +27,45 @@ char map[M][N] = {'#', '#', '#', '#', '#',
                   '#', 'X', ' ', ' ', '#',
                   '#', ' ', ' ', ' ', '#',
                   '#', ' ', ' ', ' ', '#',
-                  '#', '#', '#', '/', '#'};
-char* player;
+                  '#', '#', '#', '-', '#'};
+char *player, *door;
 void move(int key);
 Direction getDirection (int m);
-char* getPosition();
-                      
+char* getPositionPlayer();
+char* getPositionDoor();
+
 int main ()
 {
-  printLocation();
-	player = getPosition();
+	player = getPositionPlayer();
+	door = getPositionDoor();
+	printLocation();
 	bool quit = false;
 	while (!quit)
 	{
 		int key = getch();
+		if (key == ESC)
+			return 2;
 		move(key);
+		if (player == door) 
+			return 1;
 	}
 	getch();
 	return 0;
 }
 
-char* getPosition()
+char* getPositionDoor()
 {
 	for(int i = 0; i < M; i++)
 		for(int j = 0; j < N; j++)
-			if (map[i][j] == 'X') 
+			if (map[i][j] == '-' || map[i][j] == '|')
+				return &map[i][j];
+}
+
+char* getPositionPlayer()
+{
+	for(int i = 0; i < M; i++)
+		for(int j = 0; j < N; j++)
+			if (map[i][j] == 'X')
 				return &map[i][j];
 }
 
@@ -93,12 +107,12 @@ void printLocation()
 
 void move(int key)
 {
-  Direction m = getDirection(key);
-  if (*(player + m) == ' ') 
+  char* nextPos = player + getDirection(key);
+  if (*nextPos == ' ' || *nextPos == '-' || *nextPos == '|') 
   {
     *player = ' ';
-    player += m;
-    *player = 'X';
+	*nextPos = 'X';
+    player = nextPos;
     printLocation();
   }
   return;
