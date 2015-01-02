@@ -20,7 +20,32 @@ void printLocation(char a[M][N])
   }      
   return;
 }
-
+enum Direction
+{
+  UP = -N;
+  DOWN = N;
+  LEFT = -1;
+  RIGHT = 1;
+}
+Direction getDirection (int m)
+{
+  Direction d;
+  switch (m)
+  {
+    case 'w': case 'W':
+      d = UP;
+      return d;
+    case 's': case 'S':
+      d = DOWN;
+      return d;
+    case 'a': case 'A':
+      d = LEFT;
+      return d;
+    case 'd': case 'D':
+      d = RIGHT;
+      return d;
+  }
+}
 int main ()
 {
   char a[M][N] = {'#', '#', '#', '#', '#',
