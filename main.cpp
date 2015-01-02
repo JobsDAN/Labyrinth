@@ -24,7 +24,7 @@ char map[M][N] = {'#', '#', '#', '#', '#',
                   '#', ' ', ' ', ' ', '#',
                   '#', ' ', ' ', ' ', '#',
                   '#', '#', '#', '/', '#'};
-
+char* player;
 void printLocation(char map[M][N]);
 void move(int key);
 Direction getDirection (int m);
@@ -33,6 +33,7 @@ char* getPosition();
 int main ()
 {
 	printLocation(map);
+	player = getPosition();
 	bool quit = false;
 	while (!quit)
 	{
