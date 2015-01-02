@@ -21,20 +21,20 @@ enum Direction
   ERROR = 0
 };
 
+void printLocation();
 char map[M][N] = {'#', '#', '#', '#', '#',
                   '#', 'X', ' ', ' ', '#',
                   '#', ' ', ' ', ' ', '#',
                   '#', ' ', ' ', ' ', '#',
                   '#', '#', '#', '/', '#'};
 char* player;
-void printLocation(char map[M][N]);
 void move(int key);
 Direction getDirection (int m);
 char* getPosition();
-
+                      
 int main ()
 {
-	printLocation(map);
+  printLocation();
 	player = getPosition();
 	bool quit = false;
 	while (!quit)
@@ -75,7 +75,7 @@ Direction getDirection (int m)
 		return d;}
 }
 
-void printLocation(char map[M][N])
+void printLocation()
 {
 	for (int i = 0; i < M; i++)
 	{
@@ -84,4 +84,17 @@ void printLocation(char map[M][N])
 		cout << "\n";
 	}      
 	return;
+}
+
+void move(int key)
+{
+  Direction m = getDirection(key);
+  if (*(player + m) == ' ') 
+  {
+    *player = ' ';
+    player += m;
+    *player = 'X';
+    printLocation();
+  }
+  return;
 }
