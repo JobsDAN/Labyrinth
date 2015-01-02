@@ -1,9 +1,10 @@
 #include <iostream>
+#include <stdlib.h>
 #ifdef __linux__
-	#define Windows 0
+	#define WINDOWS 0
 	#include "conio_l.cpp"
 #elif _WIN32
-	#define Windows 1
+	#define WINDOWS 1
 	#include <conio.h>
 #endif
 
@@ -77,6 +78,10 @@ Direction getDirection (int m)
 
 void printLocation()
 {
+	if (WINDOWS)
+		system("cls");
+	else
+		system("clear");
 	for (int i = 0; i < M; i++)
 	{
 		for (int j = 0; j < N; j++)
