@@ -10,23 +10,36 @@ using namespace std;
 int const N = 5;
 int const M = 6;
 
-void printLocation(char a[M][N])
-{
-  for (int i = 0; i < M; i++)
-  {
-    for (int j = 0; j < N; j++)
-      cout << a[i][j];
-    cout << "\n";
-  }      
-  return;
-}
 enum Direction
 {
-  UP = -N;
-  DOWN = N;
-  LEFT = -1;
-  RIGHT = 1;
+  UP = -N,
+  DOWN = N,
+  LEFT = -1,
+  RIGHT = 1,
+};
+
+void printLocation(char map[M][N]);
+void move(int key);
+Direction getDirection (int m);
+
+int main ()
+{
+	char map[M][N] = {'#', '#', '#', '#', '#',
+                      '#', ' ', ' ', ' ', '#',
+                      '#', ' ', ' ', ' ', '#',
+                      '#', ' ', ' ', ' ', '#',
+                      '#', '#', '#', '/', '#'};
+	printLocation(map);
+	bool quit = false;
+	while (!quit)
+	{
+		int key = getch();
+		move(key);
+	}
+	getch();
+	return 0;
 }
+
 Direction getDirection (int m)
 {
   Direction d;
@@ -46,14 +59,14 @@ Direction getDirection (int m)
       return d;
   }
 }
-int main ()
+
+void printLocation(char map[M][N])
 {
-  char a[M][N] = {'#', '#', '#', '#', '#',
-                  '#', ' ', ' ', ' ', '#',
-                  '#', ' ', ' ', ' ', '#',
-                  '#', ' ', ' ', ' ', '#',
-                  '#', '#', '#', '/', '#'};
-  printLocation(a);
-  getch();
-  return 0;
+	for (int i = 0; i < M; i++)
+	{
+		for (int j = 0; j < N; j++)
+			cout << map[i][j];
+		cout << "\n";
+	}      
+	return;
 }
