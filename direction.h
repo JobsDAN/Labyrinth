@@ -9,4 +9,5 @@ enum Direction
   ERROR = 0
 };
 
+// На выходе выдает направление, которое соответствует нажатой клавише
 Direction getDirection(int key);

@@ -4,6 +4,7 @@
 
 #Make
 Makefile
+*.win
 
 # Compiled Object files
 *.slo
@@ -33,6 +34,7 @@ Makefile
 *.exe
 *.out
 *.app
+game
 
 # Dev-cpp
 *.dev
