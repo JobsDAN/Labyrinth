@@ -1,5 +1,9 @@
 # VIM
 *.swp
+*.swo
+
+#Make
+Makefile
 
 # Compiled Object files
 *.slo

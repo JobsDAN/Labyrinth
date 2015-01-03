@@ -10,9 +10,10 @@
 
 using namespace std;
 
-int const N = 5;
+int const N = 6;
 int const M = 6;
 int const ESC = 27;
+
 enum Direction
 {
   UP = -N,
@@ -22,17 +23,18 @@ enum Direction
   ERROR = 0
 };
 
-void printLocation();
-char map[M][N] = {'#', '#', '#', '#', '#',
-                  '#', 'X', ' ', ' ', '#',
-                  '#', ' ', ' ', ' ', '#',
-                  '#', ' ', ' ', ' ', '#',
-                  '#', '#', '#', '-', '#'};
+char map[M][N] = {'#', '#', '#', '#', '#', '#',
+                  '#', 'X', ' ', ' ', ' ', '#',
+                  '#', '#', '#', ' ', '#', '#',
+                  '#', ' ', ' ', ' ', ' ', '#', 
+                  '#', '#', '#', '-', '#', '#'};
 char *player, *door;
-void move(int key);
-Direction getDirection (int m);
-char* getPositionPlayer();
-char* getPositionDoor();
+
+void move(int key);  // Передвижение игрока кнопкой key
+void printLocation(); // Отобразить локацию
+Direction getDirection (int key); // Возвращает направление соотвествующее нажатой клавише
+char* getPositionPlayer(); // Возвращает указатель на позицию игрока
+char* getPositionDoor(); // Возвращает указатель на позицию выхода
 
 int main ()
 {
@@ -59,6 +61,8 @@ char* getPositionDoor()
 		for(int j = 0; j < N; j++)
 			if (map[i][j] == '-' || map[i][j] == '|')
 				return &map[i][j];
+	return nullptr;
+	//return 0;
 }
 
 char* getPositionPlayer()
@@ -67,6 +71,8 @@ char* getPositionPlayer()
 		for(int j = 0; j < N; j++)
 			if (map[i][j] == 'X')
 				return &map[i][j];
+	return nullptr;
+	//return 0;
 }
 
 Direction getDirection (int m)
