@@ -29,3 +29,6 @@
 *.exe
 *.out
 *.app
+
+# Dev-cpp
+*.dev

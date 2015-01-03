@@ -1,8 +1,11 @@
 #include <iostream>
 #include <stdlib.h>
+#include "map.h"
+#include "direction.h"
+#include "init.h"
 #ifdef __linux__
 	#define WINDOWS 0
-	#include "conio_l.cpp"
+	#include "conio.cpp"
 #elif _WIN32
 	#define WINDOWS 1
 	#include <conio.h>
@@ -10,29 +13,11 @@
 
 using namespace std;
 
-int const N = 5;
-int const M = 6;
 int const ESC = 27;
-enum Direction
-{
-  UP = -N,
-  DOWN = N,
-  LEFT = -1,
-  RIGHT = 1,
-  ERROR = 0
-};
 
-void printLocation();
-char map[M][N] = {'#', '#', '#', '#', '#',
-                  '#', 'X', ' ', ' ', '#',
-                  '#', ' ', ' ', ' ', '#',
-                  '#', ' ', ' ', ' ', '#',
-                  '#', '#', '#', '-', '#'};
 char *player, *door;
+void printLocation();
 void move(int key);
-Direction getDirection (int m);
-char* getPositionPlayer();
-char* getPositionDoor();
 
 int main ()
 {
@@ -51,43 +36,6 @@ int main ()
 	}
 	getch();
 	return 0;
-}
-
-char* getPositionDoor()
-{
-	for(int i = 0; i < M; i++)
-		for(int j = 0; j < N; j++)
-			if (map[i][j] == '-' || map[i][j] == '|')
-				return &map[i][j];
-}
-
-char* getPositionPlayer()
-{
-	for(int i = 0; i < M; i++)
-		for(int j = 0; j < N; j++)
-			if (map[i][j] == 'X')
-				return &map[i][j];
-}
-
-Direction getDirection (int m)
-{
-	Direction d;
-	switch (m){
-	case 'w': case 'W':
-		d = UP;
-		return d;
-	case 's': case 'S':
-		d = DOWN;
-		return d;
-	case 'a': case 'A':
-		d = LEFT;
-		return d;
-	case 'd': case 'D':
-		d = RIGHT;
-		return d;
-	default:
-		d = ERROR;
-		return d;}
 }
 
 void printLocation()
@@ -111,7 +59,7 @@ void move(int key)
   if (*nextPos == ' ' || *nextPos == '-' || *nextPos == '|') 
   {
     *player = ' ';
-	*nextPos = 'X';
+	  *nextPos = 'X';
     player = nextPos;
     printLocation();
   }
