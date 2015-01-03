@@ -1,0 +1,2 @@
+char* getPositionPlayer();
+char* getPositionDoor();
