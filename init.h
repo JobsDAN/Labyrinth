@@ -1,2 +1,2 @@
-char* getPositionPlayer(); // Возвращает указатель на позицию игрока
-char* getPositionDoor(); // Возвращает указатель на выход
+char* getPositionPlayer(char** map); // Возвращает указатель на позицию игрока
+char* getPositionDoor(char** map); // Возвращает указатель на выход

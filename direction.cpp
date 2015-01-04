@@ -1,24 +1,17 @@
 #include "direction.h"
+#include "map.h"
 
-extern char map[M][N];
-
-Direction getDirection (int key)
+int getDirection (int key)
 {
-	Direction d;
 	switch (key){
 	case 'w': case 'W':
-		d = UP;
-		return d;
+		return -N;
 	case 's': case 'S':
-		d = DOWN;
-		return d;
+		return N;
 	case 'a': case 'A':
-		d = LEFT;
-		return d;
+		return -1;
 	case 'd': case 'D':
-		d = RIGHT;
-		return d;
+		return 1;
 	default:
-		d = ERROR;
-		return d;}
+		return 0;}
 }

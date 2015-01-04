@@ -1,8 +1,6 @@
 #include "map.h"
 
-extern char map[M][N];
-
-char* getPositionDoor()
+char* getPositionDoor(char** map)
 {
 	for(int i = 0; i < M; i++)
 		for(int j = 0; j < N; j++)
@@ -11,7 +9,7 @@ char* getPositionDoor()
 	return 0;
 }
 
-char* getPositionPlayer()
+char* getPositionPlayer(char** map)
 {
 	for(int i = 0; i < M; i++)
 		for(int j = 0; j < N; j++)

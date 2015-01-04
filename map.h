@@ -1,6 +1,7 @@
-#ifndef MAP_CPP
-#define MAP_CPP
-int const M = 5; 
-int const N = 5;
-
+#ifndef MAP_H
+#define MAP_H
+extern int M; 
+extern int N;
+char** getMap();
+void printLocation(char** map);
 #endif

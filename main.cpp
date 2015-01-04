@@ -1,5 +1,4 @@
 #include <iostream>
-#include <stdlib.h>
 #include "direction.h"
 #include "map.h"
 #include "init.h"
@@ -14,23 +13,22 @@
 using namespace std;
 
 int const ESC = 27;
-extern char map[M][N];
 char *player, *door;
-void printLocation();
-void move(int key);
+void move(char** map, int key);
 
 int main ()
 {
-	player = getPositionPlayer();
-	door = getPositionDoor();
-	printLocation();
+	char** map = getMap();
+	player = getPositionPlayer(map);
+	door = getPositionDoor(map);
+	printLocation(map);
 	bool quit = false;
 	while (!quit)
 	{
 		int key = getch();
 		if (key == ESC)
 			return 2;
-		move(key);
+		move(map, key);
 		if (player == door) 
 			return 1;
 	}
@@ -38,30 +36,17 @@ int main ()
 	return 0;
 }
 
-void printLocation()
+void move(char** map, int key)
 {
-	if (WINDOWS)
-		system("cls");
-	else
-		system("clear");
-	for (int i = 0; i < M; i++)
+	int d = getDirection(key);
+	char* nextPos = player + d;
+	if (*nextPos == ' ' || *nextPos == '-' || *nextPos == '|') 
 	{
-		for (int j = 0; j < N; j++)
-			cout << map[i][j];
-		cout << "\n";
-	}      
+		*player = ' ';
+		*nextPos = 'X';
+		player = nextPos;
+		printLocation(map);
+	}
 	return;
 }
 
-void move(int key)
-{
-  char* nextPos = player + getDirection(key);
-  if (*nextPos == ' ' || *nextPos == '-' || *nextPos == '|') 
-  {
-    *player = ' ';
-	  *nextPos = 'X';
-    player = nextPos;
-    printLocation();
-  }
-  return;
-}
