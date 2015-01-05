@@ -1,10 +1,7 @@
 #include "map.h"
+#include "init.h"
 
 extern int N, M;
-struct position
-{
-  int i, j;
-};
 
 const position notfound = {0,0};
 

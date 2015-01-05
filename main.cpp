@@ -2,6 +2,7 @@
 #include "direction.h"
 #include "map.h"
 #include "init.h"
+#include "move.h"
 #ifdef __linux__
 	#define WINDOWS 0
 	#include "conio.cpp"
@@ -14,11 +15,11 @@ using namespace std;
 
 int const ESC = 27;
 char *door;
-void move(char** map, int key);
 
 int main ()
 {
 	char** map = getMap();
+  position player, door = getPositionDoor(map);
 	printLocation(map);
 	bool quit = false;
 	while (!quit)
@@ -27,6 +28,9 @@ int main ()
 		if (key == ESC)
 			return 2;
 		move(map, key);
+		player = getPositionPlayer(map);
+		if ((player.i == door.i) && (player.j == door.j))
+      return 1;
 	}
 	getch();
 	return 0;
