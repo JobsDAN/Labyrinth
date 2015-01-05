@@ -1,3 +1,1 @@
-struct position;
-position getPositionPlayer(char** map);
-position getPositionDoor(char** map);
+void move(char** map, int key);
