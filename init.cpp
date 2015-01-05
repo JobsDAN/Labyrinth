@@ -1,6 +1,6 @@
 #include "map.h"
 
-int N, M;
+extern int N, M;
 struct position
 {
   int i, j;
