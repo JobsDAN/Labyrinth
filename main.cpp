@@ -13,14 +13,12 @@
 using namespace std;
 
 int const ESC = 27;
-char *player, *door;
+char *door;
 void move(char** map, int key);
 
 int main ()
 {
 	char** map = getMap();
-	player = getPositionPlayer(map);
-	door = getPositionDoor(map);
 	printLocation(map);
 	bool quit = false;
 	while (!quit)
@@ -29,24 +27,7 @@ int main ()
 		if (key == ESC)
 			return 2;
 		move(map, key);
-		if (player == door) 
-			return 1;
 	}
 	getch();
 	return 0;
 }
-
-void move(char** map, int key)
-{
-	int d = getDirection(key);
-	char* nextPos = player + d;
-	if (*nextPos == ' ' || *nextPos == '-' || *nextPos == '|') 
-	{
-		*player = ' ';
-		*nextPos = 'X';
-		player = nextPos;
-		printLocation(map);
-	}
-	return;
-}
-
