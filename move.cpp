@@ -3,6 +3,7 @@
 #include "init.cpp"
 #include "move.h"
 
+
 void move(char** map, int key)
 {
 	int d = getDirection(key);
