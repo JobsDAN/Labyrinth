@@ -1,1 +1,1 @@
-void menu(bool pause);
+int menu(bool pause);

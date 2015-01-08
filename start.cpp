@@ -22,10 +22,10 @@ int start()
 			cout << "YOU WON, Continue? (y/n) ";
 			cin >> ans;
 			if (ans != 'y')
-				return 1;
-			else
-				break;
+				return 'q';
 		}
+		else 
+			return 'q';
 	}
 	return 0;
 }

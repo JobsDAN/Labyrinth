@@ -14,7 +14,7 @@
 using namespace std;
 
 const int ENTER = 10 + WINDOWS*3;
-
+const int N_menu = 4;
 int load()
 {
 	cout << "2" << '\n';
@@ -29,38 +29,38 @@ int settings()
 
 int exit()
 {
-	cout << "4" << '\n';
-	return 0;
+	return 'q';
 }
 
 void printMenu(int i);
 
-void menu(bool pause)
+int menu(bool pause)
 {
   int (*choice[])() = {start, load, settings, exit};
   int i = 0;
   do
   {
-    printMenu(i);
-    int key = getch();
-    if (key == ENTER)
-    {
-      (*choice[i])();
-      cout << "!!!";
+	printMenu(i);
+	int key = getch();
+	if (key == ENTER)
+	{
+		int a = (*choice[i])();
+		if (a == 'q')
+			return 'q';
     }
     else
       switch (key)
       {
         case 'w': case 'W':
-          i = (i == 0) ? 3 : i-1;
+          i = (i == 0) ? N_menu-1 : i-1;
           break;
         case 's': case 'S':
-          i = (i == 3) ? 0 : i+1;
+          i = (i == N_menu-1) ? 0 : i+1;
           break;
       }
     }
-    while (i >= 0 && i <= 3);
-  return;
+    while (i >= 0 && i <= N_menu-1);
+  return -1;
 }
 
 void printMenu(int a)

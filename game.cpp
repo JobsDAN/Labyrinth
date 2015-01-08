@@ -2,6 +2,7 @@
 #include "map.h"
 #include "init.h"
 #include "move.h"
+#include "menu.h" 
 #ifdef __linux__
 	#define WINDOWS 0
 	#include "conio.h"
@@ -25,8 +26,12 @@ int game (char** map)
 	{
 		int key = getch();
 		if (key == ESC)
-			cout << "menu(true)";
-			//menu(true);
+		{
+			int a = menu(true);
+			if (a == 'q')
+				return 2;
+			printLocation(map);
+		}
 		move(map, key);
 		player = getPositionPlayer(map);
 		if ((player.i == door.i) && (player.j == door.j))
