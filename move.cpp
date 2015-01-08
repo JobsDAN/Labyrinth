@@ -2,6 +2,7 @@
 #include "move.h"
 #include "init.h"
 
+
 void move(char** map, int key)
 {
 	position nextPos = getPositionPlayer(map);

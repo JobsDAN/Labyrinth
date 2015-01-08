@@ -51,13 +51,6 @@ char** readMap(string name)
 			map[M-1][i] = line[i];
 	}
 	
-	cout << "Your map:" << '\n';
-	for (int i = 0; i < M; i++)
-	{
-		for (int j = 0; j < N; j++)
-			cout << map[i][j];
-		cout << '\n';
-	}
 	return map;
 }
 
@@ -66,7 +59,16 @@ char** getMap()
 	string name;
 	cout << "Enter name file with map: ";
 	cin >> name;
-	return readMap(name);
+	
+	char** map = readMap(name);
+	cout << "Your map:" << '\n';
+	for (int i = 0; i < M; i++)
+	{
+		for (int j = 0; j < N; j++)
+			cout << map[i][j];
+		cout << '\n';
+	}
+	return map;
 }
 
 void printLocation(char** map)
