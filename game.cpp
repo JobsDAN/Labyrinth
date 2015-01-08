@@ -4,7 +4,7 @@
 #include "move.h"
 #ifdef __linux__
 	#define WINDOWS 0
-	#include "conio.cpp"
+	#include "conio.h"
 #elif _WIN32
 	#define WINDOWS 1
 	#include <conio.h>

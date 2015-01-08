@@ -1,7 +1,7 @@
-#include "start.h"
+#include "menu.h"
 
 int main()
 {
-	start();
+	menu(true);
 	return 0;
 }
