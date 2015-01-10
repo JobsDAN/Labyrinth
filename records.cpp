@@ -1,7 +1,13 @@
 #include <fstream>
 #include <string>
 #include <iostream>
-#include <conio.h>
+#ifdef __linux__
+	#define WINDOWS 0
+	#include "conio.h"
+#elif _WIN32
+	#define WINDOWS 1
+	#include <conio.h>
+#endif
 
 using namespace std;
 

@@ -1,4 +1,5 @@
 #include <iostream>
+#include <stdlib.h>
 #ifdef __linux__
 	#define WINDOWS 0
 #elif _WIN32
