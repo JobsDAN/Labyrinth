@@ -1,14 +1,9 @@
 #include "map.h"
+#include "clean.h"
 #include <iostream>
 #include <fstream>
-#include <string>
 #include <string.h>
 #include <stdlib.h>
-#ifdef __linux__
-	#define WINDOWS 0
-#elif _WIN32
-	#define WINDOWS 1
-#endif
 
 using namespace std;
 
@@ -73,10 +68,7 @@ char** getMap()
 
 void printLocation(char** map)
 {
-	if (WINDOWS)
-		system("cls");
-	else
-		system("clear");
+	clean();
 	for (int i = 0; i < M; i++)
 	{
 		for (int j = 0; j < N; j++)

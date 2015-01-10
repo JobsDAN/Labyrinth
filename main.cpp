@@ -1,7 +1,9 @@
 #include "menu.h"
+#include "records.h"
 
 int main()
 {
-	menu(true);
+	writeRecords("VASYA", 5);
+  menu(true);
 	return 0;
 }

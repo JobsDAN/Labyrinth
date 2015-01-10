@@ -1,5 +1,7 @@
 #include "menu.h"
 #include "start.h"
+#include "records.h"
+#include "clean.h"
 #include <iostream>
 #include <stdio.h>
 #include <stdlib.h>
@@ -21,12 +23,15 @@ int load()
 	return 0;
 }
 
-int settings()
+int records()
 {
-	cout << "3" << '\n';
-	return 0;
+  clean();
+  cout << "Your records:\n";
+  readRecords();
+  cout << "Press ESC for return";
+  while (getch() != 27);
+  return 0;
 }
-
 int exit()
 {
 	return 'q';
@@ -36,7 +41,7 @@ void printMenu(int i);
 
 int menu(bool pause)
 {
-  int (*choice[])() = {start, load, settings, exit};
+  int (*choice[])() = {start, load, records, exit};
   int i = 0;
   do
   {
@@ -65,11 +70,8 @@ int menu(bool pause)
 
 void printMenu(int a)
 {
-	if (WINDOWS)
-		system("cls");
-	else
-		system("clear");
-	string txt[] = {"Start", "Load", "Setting", "Exit"};
+	clean();
+	string txt[] = {"Start", "Load", "Records", "Exit"};
 	for (int i = 0; i < 4; i++)
     if (a == i) 
 			cout << "> " << txt[i] << " < \n";
