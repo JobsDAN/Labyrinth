@@ -7,6 +7,6 @@ extern int N;
 
 char** getMap();
 char** readMap(std::string name);
-void printLocation(char** map);
+void printMap(char** map, int steps);
 
 #endif

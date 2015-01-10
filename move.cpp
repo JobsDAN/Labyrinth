@@ -3,7 +3,7 @@
 #include "init.h"
 
 
-void move(char** map, int key)
+int move(char** map, int key)
 {
 	position nextPos = getPositionPlayer(map);
 	position oldPos = nextPos;
@@ -29,7 +29,7 @@ void move(char** map, int key)
 	{
 		map[oldPos.i][oldPos.j] = ' ';
 		*pNextPos = 'X';
-		printLocation(map);
+		return 1;
 	}
-	return;
+	return 0;
 }

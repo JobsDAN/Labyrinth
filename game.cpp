@@ -20,22 +20,23 @@ int game (char** map)
 {
 	//char** map = getMap();
 	position player, door = getPositionDoor(map);
-	printLocation(map);
+	int steps = 0;
+  printMap(map, steps);
 	bool quit = false;
 	while (!quit)
 	{
 		int key = getch();
 		if (key == ESC)
 		{
-			int a = menu(true);
-			if (a == 'q')
-				return 2;
-			printLocation(map);
+			if (menu(true) == 'q')
+				return 'q';
+			printMap(map, steps);
 		}
-		move(map, key);
+		if (move(map, key))
+      printMap(map, ++steps);
 		player = getPositionPlayer(map);
 		if ((player.i == door.i) && (player.j == door.j))
-			return 1;
+			return steps;
 	}
 	getch();
 	return -1;
