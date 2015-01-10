@@ -1,6 +1,8 @@
 #include <iostream>
 #include <string>
+#include <conio.h>
 #include "map.h"
+#include "records.h"
 
 using namespace std;
 
@@ -16,11 +18,22 @@ int start()
 	{
 		char** map = readMap(maps[i]);
 		stat = game(map);
-		if (stat==1)
+		if (stat != 'q')
 		{
 			char ans;
-			cout << "YOU WON, Continue? (y/n) ";
-			cin >> ans;
+			cout << "\nYOU WON!!!\nEnter your name:\n";
+			string name;
+			cin >> name;
+			if (name != "")
+        writeRecords(name, stat);
+      if (i == N_maps - 1)
+      {
+        cout << "You have finished all maps. CONGRATULATIONS!\nPress any key. . .";
+        getch();
+        return 1;
+      }
+      cout << "Continue? (y/n)\n";
+      cin >> ans;
 			if (ans != 'y')
 				return 'q';
 		}

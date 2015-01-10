@@ -13,7 +13,7 @@ using namespace std;
 
 void writeRecords (string name, int record)
 {
-  ofstream file("records.txt");
+  ofstream file("records.txt", ios_base::app);
   file << name << " " << record << "\n";
   return;
 }  

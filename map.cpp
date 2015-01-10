@@ -66,7 +66,7 @@ char** getMap()
 	return map;
 }
 
-void printLocation(char** map)
+void printMap(char** map, int steps)
 {
 	clean();
 	for (int i = 0; i < M; i++)
@@ -74,6 +74,7 @@ void printLocation(char** map)
 		for (int j = 0; j < N; j++)
 			cout << map[i][j];
 		cout << "\n";
-	}      
+	}
+  cout << "\nNumber of steps: " << steps;
 	return;
 }

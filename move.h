@@ -1,1 +1,1 @@
-void move(char** map, int key);
+int move(char** map, int key);
