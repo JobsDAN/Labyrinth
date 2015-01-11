@@ -11,7 +11,8 @@ int N, M;
 
 char** readMap(string name)
 {
-	M = 0;
+	setlocale(0,"");
+  M = 0;
 	ifstream file(name.c_str());
 	string line;
 	getline(file, line);
@@ -52,11 +53,11 @@ char** readMap(string name)
 char** getMap()
 {
 	string name;
-	cout << "Enter name file with map: ";
+	cout << "Введите имя файла с картой: ";
 	cin >> name;
 	
 	char** map = readMap(name);
-	cout << "Your map:" << '\n';
+	cout << "Ваша карта:" << '\n';
 	for (int i = 0; i < M; i++)
 	{
 		for (int j = 0; j < N; j++)
@@ -75,6 +76,6 @@ void printMap(char** map, int steps)
 			cout << map[i][j];
 		cout << "\n";
 	}
-  cout << "\nNumber of steps: " << steps;
+  cout << "\nКоличество шагов: " << steps;
 	return;
 }

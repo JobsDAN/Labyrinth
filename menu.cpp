@@ -26,9 +26,9 @@ int load()
 int records()
 {
   clean();
-  cout << "Your records:\n";
+  cout << "Ваши рекорды:\n";
   readRecords();
-  cout << "Press ESC for return";
+  cout << "Нажмите ESC для возвращения в меню. . .";
   while (getch() != 27);
   return 0;
 }
@@ -41,6 +41,7 @@ void printMenu(int i);
 
 int menu(bool pause)
 {
+  setlocale(0,"");
   int (*choice[])() = {start, load, records, exit};
   int i = 0;
   do
@@ -71,7 +72,7 @@ int menu(bool pause)
 void printMenu(int a)
 {
 	clean();
-	string txt[] = {"Start", "Load", "Records", "Exit"};
+	string txt[] = {"Старт", "Загрузка", "Рекорды", "Выход"};
 	for (int i = 0; i < 4; i++)
     if (a == i) 
 			cout << "> " << txt[i] << " < \n";
