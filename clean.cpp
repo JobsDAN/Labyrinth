@@ -1,16 +1,17 @@
-#include <iostream>
+// Copyright 2015 JobsDAN
+
 #include <stdlib.h>
+#include <iostream>
 #ifdef __linux__
-	#define WINDOWS 0
+  #define WINDOWS 0
 #elif _WIN32
-	#define WINDOWS 1
+  #define WINDOWS 1
 #endif
 
-void clean()
-{
+void clean() {
   if (WINDOWS)
-		system("cls");
-	else
-		system("clear");
-	return;
+    system("cls");
+  else
+    system("clear");
+  return;
 }

@@ -1,7 +1,8 @@
+// Copyright 2015 jobsDAN
+
 #include "menu.h"
 
-int main()
-{
+int main() {
   menu(true);
-	return 0;
+  return 0;
 }

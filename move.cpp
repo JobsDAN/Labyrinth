@@ -1,14 +1,14 @@
+// Copyright 2015 JobsDAN
+
 #include "map.h"
 #include "move.h"
 #include "init.h"
 
 
-int move(char** map, int key)
-{
-	position nextPos = getPositionPlayer(map);
-	position oldPos = nextPos;
-  switch(key)
-  {
+int move(char** map, int key) {
+  position nextPos = getPositionPlayer(map);
+  position oldPos = nextPos;
+  switch (key) {
     case 'w': case 'W':
       nextPos.i--;
       break;
@@ -24,12 +24,11 @@ int move(char** map, int key)
     default:
       break;
   }
-	char *pNextPos = &map[nextPos.i][nextPos.j];
-  if (*pNextPos == ' ' || *pNextPos == '-' || *pNextPos == '|') 
-	{
-		map[oldPos.i][oldPos.j] = ' ';
-		*pNextPos = 'X';
-		return 1;
-	}
-	return 0;
+  char *pNextPos = &map[nextPos.i][nextPos.j];
+  if (*pNextPos == ' ' || *pNextPos == '-' || *pNextPos == '|') {
+    map[oldPos.i][oldPos.j] = ' ';
+    *pNextPos = 'X';
+    return 1;
+  }
+  return 0;
 }
