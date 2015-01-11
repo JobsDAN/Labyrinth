@@ -1,8 +1,8 @@
 // Copyright 2015 JobsDAN
 
-#include "map.h"
-#include "move.h"
-#include "init.h"
+#include "./map.h"
+#include "./move.h"
+#include "./init.h"
 
 
 int move(char** map, int key) {

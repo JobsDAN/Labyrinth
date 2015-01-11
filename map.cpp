@@ -1,19 +1,22 @@
 // Copyright 2015 jobsDAN
 
+#include <string.h>
+#include <stdlib.h>
 #include <iostream>
 #include <string>
 #include <fstream>
-#include <string.h>
-#include <stdlib.h>
-#include "map.h"
-#include "clean.h"
+#include "./map.h"
+#include "./clean.h"
 
 int N, M;
 
-char** readMap(string name) {
+char** readMap(std::string name) {
+  #ifdef _WIN32
+    setlocale(0, "");
+  #endif
   M = 0;
-  ifstream file(name.c_str());
-  string line;
+  std::ifstream file(name.c_str());
+  std::string line;
   getline(file, line);
   N = line.length();
   char** map = new char*[++M];
@@ -48,16 +51,24 @@ char** readMap(string name) {
 }
 
 char** getMap() {
-  string name;
-  cout << "Enter name file with map: ";
-  cin >> name;
+  std::string name;
+  #ifdef __linux__
+    std::cout << "Введите путь к файлу содержащему карту: ";
+  #elif _WIN32
+    std::cout << "Ââåäèòå èìÿ ôàéëà ñ êàðòîé: ";
+  #endif
+  std::cin >> name;
 
   char** map = readMap(name);
-  cout << "Your map:" << '\n';
+  #ifdef __linux__
+    std::cout << "Ваша карта: ";
+  #elif _WIN32
+    std::cout << "Âàøà êàðòà:" << '\n';
+  #endif
   for (int i = 0; i < M; i++) {
     for (int j = 0; j < N; j++)
-      cout << map[i][j];
-    cout << '\n';
+      std::cout << map[i][j];
+    std::cout << '\n';
   }
   return map;
 }
@@ -66,9 +77,13 @@ void printMap(char** map, int steps) {
   clean();
   for (int i = 0; i < M; i++) {
     for (int j = 0; j < N; j++)
-      cout << map[i][j];
-    cout << "\n";
+      std::cout << map[i][j];
+    std::cout << "\n";
   }
-  cout << "\nNumber of steps: " << steps;
+  #ifdef __linux__
+    std::cout << "\nКоличество шагов: " << steps;
+  #elif _WIN32
+    std::cout << "\nÊîëè÷åñòâî øàãîâ: " << steps;
+  #endif
   return;
 }

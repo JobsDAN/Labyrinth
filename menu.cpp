@@ -19,18 +19,27 @@
 const int ENTER = 10 + WINDOWS*3;
 const int N_menu = 4;
 int load() {
-  cout << "2" << '\n';
+  std::cout << "2" << '\n';
   return 0;
 }
 
 int records() {
   clean();
-  cout << "Your records:\n";
+  #ifdef __linux__
+    std::cout << "Лучшие результаты\n";
+  #elif _WIN32
+    std::cout << "Âàøè ðåêîðäû:\n";
+  #endif
   readRecords();
-  cout << "Press ESC for return";
+  #ifdef __linux__
+    std::cout << "Нажмите ESC для продолжения...\n";
+  #elif _WIN32
+    std::cout << "Íàæìèòå ESC äëÿ âîçâðàùåíèÿ â ìåíþ. . .\n";
+  #endif
   while (getch() != 27) {}
   return 0;
 }
+
 int exit() {
   return 'q';
 }
@@ -38,6 +47,9 @@ int exit() {
 void printMenu(int i);
 
 int menu(bool pause) {
+  #ifdef _WIN32
+    setlocale(0, "");
+  #endif
   int (*choice[])() = {start, load, records, exit};
   int i = 0;
   do {
@@ -57,18 +69,21 @@ int menu(bool pause) {
           break;
       }
     }
-  }
-  while (i >= 0 && i <= N_menu-1) {}
+  } while (i >= 0 && i <= N_menu-1);
   return -1;
 }
 
 void printMenu(int a) {
   clean();
-  string txt[] = {"Start", "Load", "Records", "Exit"};
+  #ifdef __linux__
+    std::string txt[] = {"Старт", "Загрузка", "Рекорды", "Выход"};
+  #elif _WIN32
+    std::string txt[] = {"Ñòàðò", "Çàãðóçêà", "Ðåêîðäû", "Âûõîä"};
+  #endif
   for (int i = 0; i < 4; i++)
     if (a == i)
-      cout << "> " << txt[i] << " < \n";
+      std::cout << "> " << txt[i] << " < \n";
     else
-      cout << txt[i] << "\n";
+      std::cout << txt[i] << "\n";
   return;
 }

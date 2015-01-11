@@ -1,10 +1,10 @@
 // Copyright 2015 JobsDAN
 
 #include <iostream>
-#include "map.h"
-#include "init.h"
-#include "move.h"
-#include "menu.h"
+#include "./map.h"
+#include "./init.h"
+#include "./move.h"
+#include "./menu.h"
 #ifdef __linux__
   #define WINDOWS 0
   #include "conio.h"

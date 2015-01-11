@@ -1,4 +1,5 @@
-// Copyright 2015 jobsDAN
+// Copyright 2015 JobsDAN
+
 #ifndef CONIO_CPP
 #define CONIO_CPP
 

@@ -11,16 +11,15 @@
   #include <conio.h>
 #endif
 
-void writeRecords(string name, int record) {
-  ofstream file("records.txt", ios_base::app);
+void writeRecords(std::string name, int record) {
+  std::ofstream file("records.txt", std::ios_base::app);
   file << name << " " << record << "\n";
-  return;
 }
 
 void readRecords() {
-  ifstream file("records.txt");
-  string line;
+  std::ifstream file("records.txt");
+  std::string line;
   while (getline(file, line))
-    cout << line << "\n";
+    std::cout << line << "\n";
   return;
 }

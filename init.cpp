@@ -1,7 +1,7 @@
-// Copyright 2015 jobsDAN
+// Copyright 2015 JobsDAN
 
-#include "map.h"
-#include "init.h"
+#include "./map.h"
+#include "./init.h"
 
 extern int N, M;
 
