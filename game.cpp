@@ -8,7 +8,7 @@
 #include "./menu.h"
 #ifdef __linux__
   #define WINDOWS 0
-  #include "conio.h"
+  #include "multiplatform.h"
 #elif _WIN32
   #define WINDOWS 1
   #include <conio.h>
@@ -17,25 +17,27 @@
 int const ESC = 27;
 char *door;
 
+bool win(char**);
+
 int game(char** map) {
-  position player, door = getPositionDoor(map);
-  int steps = 0;
   clock_t start = clock();
-  printMap(map, steps);
-  bool quit = false;
-  while (!quit) {
+  printMap(map);
+  while (true) {
     int key = getch();
-    if (key == ESC) {
+    if (key == ESC)
       if (pauseMenu() == 'q')
         return 'q';
-      printMap(map, steps);
-    }
+      else
+        printMap(map);
     if (move(map, key))
-      printMap(map, ++steps);
-    player = getPositionPlayer(map);
-    if ((player.i == door.i) && (player.j == door.j))
+      printMap(map);
+    if (win(map))
       return clock() - start;
   }
   getch();
   return -1;
+}
+
+bool win(char** map) {
+  return equals(getPositionDoor(map), getPositionPlayer(map));
 }

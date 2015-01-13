@@ -18,4 +18,9 @@ int getch() {
   tcsetattr(STDIN_FILENO, TCSANOW, &oldt);
   return ch;
 }
+
+void setlocale(int a, char* b) {
+ return;
+}
+
 #endif
