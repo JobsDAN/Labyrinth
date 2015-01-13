@@ -8,6 +8,8 @@
 #include "start.h"
 #include "records.h"
 #include "clean.h"
+#include "map.h"
+#include "game.h"
 #ifdef __linux__
   #define WINDOWS 0
   #include "conio.h"
@@ -19,7 +21,8 @@
 const int ENTER = 10 + WINDOWS*3;
 const int N_menu = 4;
 int load() {
-  std::cout << "2" << '\n';
+  char** map = getMap();
+  game(map);
   return 0;
 }
 
@@ -28,13 +31,13 @@ int records() {
   #ifdef __linux__
     std::cout << "Лучшие результаты\n";
   #elif _WIN32
-    std::cout << "Âàøè ðåêîðäû:\n";
+    std::cout << "���� �������:\n";
   #endif
   readRecords();
   #ifdef __linux__
     std::cout << "Нажмите ESC для продолжения...\n";
   #elif _WIN32
-    std::cout << "Íàæìèòå ESC äëÿ âîçâðàùåíèÿ â ìåíþ. . .\n";
+    std::cout << "������� ESC ��� ����������� � ����. . .\n";
   #endif
   while (getch() != 27) {}
   return 0;
@@ -78,7 +81,7 @@ void printMenu(int a) {
   #ifdef __linux__
     std::string txt[] = {"Старт", "Загрузка", "Рекорды", "Выход"};
   #elif _WIN32
-    std::string txt[] = {"Ñòàðò", "Çàãðóçêà", "Ðåêîðäû", "Âûõîä"};
+    std::string txt[] = {"�����", "��������", "�������", "�����"};
   #endif
   for (int i = 0; i < 4; i++)
     if (a == i)
