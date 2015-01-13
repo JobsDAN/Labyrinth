@@ -32,18 +32,16 @@ int start() {
       if (i == N_maps - 1) {
         #ifdef __linux__
           std::cout << "\nВы прошли все уровни. Поздравляем!\n"
-                    << "Нажмите любую клавишу для продолжения...";
+                    << "Введите ваше имя: ";
         #elif _WIN32
           std::cout << "\n�� ������ ��� ������. �����������!\n"
                << "������� ���� ���: ";
         #endif
         std::string name;
         std::cin >> name;
-        if (name != "") {
-          std::stringstream text;
-          text << name << " " << time;
-          writeRecords(text.str());
-        }
+        std::stringstream text;
+        text << name << " " << time;
+        writeRecords(text.str());
         #ifdef __linux__
           std::cout << "\nНажмите любую клавишу для продолжения...";
         #elif _WIN32
