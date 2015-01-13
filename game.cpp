@@ -24,7 +24,7 @@ int game(char** map) {
   while (!quit) {
     int key = getch();
     if (key == ESC) {
-      if (menu(true) == 'q')
+      if (pauseMenu() == 'q')
         return 'q';
       printMap(map, steps);
     }
