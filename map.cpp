@@ -1,4 +1,4 @@
-// Copyright 2015 jobsDAN
+// Copyright 2015 JobsDAN
 
 #include <string.h>
 #include <stdlib.h>

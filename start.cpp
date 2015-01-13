@@ -27,40 +27,29 @@ int start() {
     char** map = readMap(maps[i]);
     stat = game(map);
     if (stat != 'q') {
-      char ans;
-      #ifdef __linux__
-        std::cout << "\nĞ’Ñ‹ Ğ¿Ğ¾Ğ±ĞµĞ´Ğ¸Ğ»Ğ¸!!!\nĞ’Ğ²ĞµĞ´Ğ¸Ñ‚Ğµ Ğ’Ğ°ÑˆĞµ Ğ¸Ğ¼Ñ:\n";
-      #elif _WIN32
-        std::cout << "\nÂû ïîáåäèëè!!!\nÂâåäèòå âàøå èìÿ: ";
-      #endif
-      std::string name;
-      std::cin >> name;
-      if (name != "") {
-        std::stringstream text;
-        text << name << " " << stat;
-        writeRecords(text.str());
-      }
       if (i == N_maps - 1) {
         #ifdef __linux__
           std::cout << "\nĞ’Ñ‹ Ğ¿Ñ€Ğ¾ÑˆĞ»Ğ¸ Ğ²ÑĞµ ÑƒÑ€Ğ¾Ğ²Ğ½Ğ¸. ĞŸĞ¾Ğ·Ğ´Ñ€Ğ°Ğ²Ğ»ÑĞµĞ¼!!\n"
                     << "ĞĞ°Ğ¶Ğ¼Ğ¸Ñ‚Ğµ Ğ»ÑĞ±ÑƒÑ ĞºĞ»Ğ°Ğ²Ğ¸ÑˆÑƒ Ğ´Ğ»Ñ Ğ¿Ñ€Ğ¾Ğ´Ğ¾Ğ»Ğ¶ĞµĞ½Ğ¸Ñ...";
         #elif _WIN32
           std::cout << "Âû ïğîøëè âñå óğîâíè. Ïîçäğàâëÿåì!\n"
-               << "Íàæìèòå ëşáóş êëàâèøó äëÿ ïğîäîëæåíèÿ. . .";
+               << "Ââåäèòå âàøå èìÿ: ";
+        #endif
+        std::string name;
+        std::cin >> name;
+        if (name != "") {
+          std::stringstream text;
+          text << name << " " << stat;
+          writeRecords(text.str());
+        }
+        #ifdef __linux__
+          std::cout << "\nĞĞ°Ğ¶Ğ¼Ğ¸Ñ‚Ğµ Ğ»ÑĞ±ÑƒÑ ĞºĞ»Ğ°Ğ²Ğ¸ÑˆÑƒ Ğ´Ğ»Ñ Ğ¿Ñ€Ğ¾Ğ´Ğ¾Ğ»Ğ¶ĞµĞ½Ğ¸Ñ...";
+        #elif _WIN32
+          std::cout << "\nÍàæìèòå ëşáóş êëàâèøó äëÿ ïğîäîëæåíèÿ. . .";
         #endif
         getch();
         return 1;
       }
-      #ifdef __linux__
-        std::cout << "Ğ¥Ğ¾Ñ‚Ğ¸Ñ‚Ğµ Ğ¿Ñ€Ğ¾Ğ´Ğ¾Ğ»Ğ¶Ğ¸Ñ‚ÑŒ? (y/n)\n";
-      #elif _WIN32
-        std::cout << "Õîòèòå ïğîäîëæèòü? (y/n)\n";
-      #endif
-      std::cin >> ans;
-      if (ans != 'y')
-        return 'q';
-    } else {
-      return 'q';
     }
   }
   return 0;
