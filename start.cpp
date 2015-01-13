@@ -1,6 +1,7 @@
 // Copyright 2015 JobsDAN
 
 #include <iostream>
+#include <sstream>
 #include <string>
 #include "./map.h"
 #include "./records.h"
@@ -34,8 +35,11 @@ int start() {
       #endif
       std::string name;
       std::cin >> name;
-      if (name != "")
-        writeRecords(name, stat);
+      if (name != "") {
+        std::stringstream text;
+        text << name << " " << stat;
+        writeRecords(text.str());
+      }
       if (i == N_maps - 1) {
         #ifdef __linux__
           std::cout << "\nВы прошли все уровни. Поздравляем!!\n"

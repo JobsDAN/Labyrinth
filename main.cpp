@@ -1,8 +1,8 @@
-// Copyright 2015 jobsDAN
+// Copyright 2015 JobsDAN 
 
 #include "menu.h"
 
 int main() {
-  menu(true);
+  mainMenu();
   return 0;
 }

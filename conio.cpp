@@ -4,6 +4,7 @@
 #define CONIO_CPP
 
 #include <stdio.h>
+#include <termios.h>
 #include <unistd.h>
 
 int getch() {
