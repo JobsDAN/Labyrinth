@@ -53,7 +53,7 @@ int menu(int (**choice)(), std::string *text, int size) {
   return -1;
 }
 
-int mainMenu() {
+int main() {
   int (*choice[])() = {start, load, records, exit};
   #ifdef __linux__
     std::string txt[] = {"Старт", "Загрузка", "Рекорды", "Выход"};

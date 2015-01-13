@@ -1,5 +1,6 @@
 // Copyright 2015 JobsDAN
 
+#include <time.h>
 #include <iostream>
 #include <sstream>
 #include <string>
@@ -25,8 +26,8 @@ int start() {
   std::string maps[N_maps] = {"standart/1.map", "standart/2.map"};
   for (int i = 0; i < N_maps; i++) {
     char** map = readMap(maps[i]);
-    stat = game(map);
-    if (stat != 'q') {
+    int res = game(map);
+    if (res != 'q') {
       char ans;
       #ifdef __linux__
         std::cout << "\nВы победили!!!\nВведите Ваше имя:\n";
@@ -35,11 +36,9 @@ int start() {
       #endif
       std::string name;
       std::cin >> name;
-      if (name != "") {
-        std::stringstream text;
-        text << name << " " << stat;
-        writeRecords(text.str());
-      }
+      std::stringstream text;
+      text << name << " " << res;
+      writeRecords(text.str());
       if (i == N_maps - 1) {
         #ifdef __linux__
           std::cout << "\nВы прошли все уровни. Поздравляем!!\n"

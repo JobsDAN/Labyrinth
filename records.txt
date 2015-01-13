@@ -1,22 +1,2 @@
-PETYA 3
-VASYA 5
-PETYA 3
-VASYA 5
-PETYA 3
-Maxim 23
-Maxim 31
-MAXIM 103
-d 27
-asdf 105
-ddd 25
-Hui 103
-qwerty 23
-Diadlo 23
-Diadlo 103
-Дмитрий 23
-ДМитрий 103
-testttttt 23
-q25
-F-f-f-fuck 23
-q 103
-ddd 23
+Diadlo 25
+q 4252
