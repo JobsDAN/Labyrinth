@@ -20,8 +20,8 @@ char *door;
 bool win(char**);
 
 int game(char** map) {
-  clock_t start = clock();
   position door = getPositionDoor(map);
+  clock_t start = clock();
   printMap(map);
   while (true) {
     int key = _getch();
@@ -32,7 +32,7 @@ int game(char** map) {
         printMap(map);
     if (move(map, key))
       printMap(map);
-	if (equals(getPositionPlayer(map), door))
+    if (equals(getPositionPlayer(map), door))
       return clock() - start;
   }
   _getch();
