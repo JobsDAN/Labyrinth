@@ -11,7 +11,7 @@
   #include "conio.h"
 #elif _WIN32
   #define WINDOWS 1
-  #include <conio.h>
+#include <conio.h>
 #endif
 
 int const ESC = 27;
@@ -24,7 +24,7 @@ int game(char** map) {
   printMap(map, steps);
   bool quit = false;
   while (!quit) {
-    int key = getch();
+    int key = _getch();
     if (key == ESC) {
       if (pauseMenu() == 'q')
         return 'q';
@@ -36,6 +36,6 @@ int game(char** map) {
     if ((player.i == door.i) && (player.j == door.j))
       return clock() - start;
   }
-  getch();
+  _getch();
   return -1;
 }

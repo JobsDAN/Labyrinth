@@ -11,7 +11,7 @@
   #include "conio.h"
 #elif _WIN32
   #define WINDOWS 1
-  #include <conio.h>
+#include <conio.h>
 #endif
 
 int game(char** map);
@@ -47,7 +47,7 @@ int start() {
         #elif _WIN32
           std::cout << "\nНажмите любую клавишу для продолжения. . .";
         #endif
-        getch();
+        _getch();
         return 1;
       }
     }

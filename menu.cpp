@@ -31,7 +31,7 @@ int menu(int (**choice)(), std::string *text, int size) {
   int i = 0;
   do {
     printMenu(i, text, size);
-    int key = getch();
+    int key = _getch();
       switch (key) {
         case 'w': case 'W':
           i = (i == 0) ? size-1 : i-1;

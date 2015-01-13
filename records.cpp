@@ -9,7 +9,7 @@
   #include "conio.h"
 #elif _WIN32
   #define WINDOWS 1
-  #include <conio.h>
+#include <conio.h>
 #endif
 
 void writeRecords(std::string text) {
@@ -33,6 +33,6 @@ int readRecords() {
   #elif _WIN32
     std::cout << "Нажмите ESC для продолжения. .\n";
   #endif
-  while (getch() != 27) {}
+  while (_getch() != 27) {}
   return 0;
 }

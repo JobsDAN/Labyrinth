@@ -41,3 +41,13 @@ game
 *.dev
 *.layout
 *~
+
+# VS 2013
+*.sln
+*.sdf
+*.opensdf
+*.v12.suo
+*.vcxproj
+*.vcxproj.filters
+Debug/
+Debug/*
