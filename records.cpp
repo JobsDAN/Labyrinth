@@ -13,7 +13,7 @@
 
 void writeRecords(std::string text) {
   std::ofstream file("records.txt", std::ios_base::app);
-  file << name << "\n";
+  file << text << "\n";
 }
 
 void readRecords() {

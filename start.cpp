@@ -1,6 +1,7 @@
 // Copyright 2015 JobsDAN
 
 #include <iostream>
+#include <sstream>
 #include <string>
 #include "./map.h"
 #include "./records.h"
@@ -30,19 +31,22 @@ int start() {
       #ifdef __linux__
         std::cout << "\nÐ’Ñ‹ Ð¿Ð¾Ð±ÐµÐ´Ð¸Ð»Ð¸!!!\nÐ’Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ð’Ð°ÑˆÐµ Ð¸Ð¼Ñ:\n";
       #elif _WIN32
-        std::cout << "\nÃ‚Ã» Ã¯Ã®Ã¡Ã¥Ã¤Ã¨Ã«Ã¨!!!\nÃ‚Ã¢Ã¥Ã¤Ã¨Ã²Ã¥ Ã¢Ã Ã¸Ã¥ Ã¨Ã¬Ã¿:\n";
+        std::cout << "\nÂû ïîáåäèëè!!!\nÂâåäèòå âàøå èìÿ: ";
       #endif
       std::string name;
       std::cin >> name;
-      if (name != "")
-        writeRecords(name + stat);
+      if (name != "") {
+        std::stringstream text;
+        text << name << " " << stat;
+        writeRecords(text.str());
+      }
       if (i == N_maps - 1) {
         #ifdef __linux__
           std::cout << "\nÐ’Ñ‹ Ð¿Ñ€Ð¾ÑˆÐ»Ð¸ Ð²ÑÐµ ÑƒÑ€Ð¾Ð²Ð½Ð¸. ÐŸÐ¾Ð·Ð´Ñ€Ð°Ð²Ð»ÑÐµÐ¼!!\n"
                     << "ÐÐ°Ð¶Ð¼Ð¸Ñ‚Ðµ Ð»ÑŽÐ±ÑƒÑŽ ÐºÐ»Ð°Ð²Ð¸ÑˆÑƒ Ð´Ð»Ñ Ð¿Ñ€Ð¾Ð´Ð¾Ð»Ð¶ÐµÐ½Ð¸Ñ...";
         #elif _WIN32
-          std::cout << "Ã‚Ã» Ã¯Ã°Ã®Ã¸Ã«Ã¨ Ã¢Ã±Ã¥ ÃªÃ Ã°Ã²Ã». ÃÃ®Ã§Ã¤Ã°Ã Ã¢Ã«Ã¿Ã¥Ã¬!\n"
-               << "ÃÃ Ã¦Ã¬Ã¨Ã²Ã¥ Ã«Ã¾Ã¡Ã³Ã¾ ÃªÃ«Ã Ã¢Ã¨Ã¸Ã³. . .";
+          std::cout << "Âû ïðîøëè âñå óðîâíè. Ïîçäðàâëÿåì!\n"
+               << "Íàæìèòå ëþáóþ êëàâèøó äëÿ ïðîäîëæåíèÿ. . .";
         #endif
         getch();
         return 1;
@@ -50,7 +54,7 @@ int start() {
       #ifdef __linux__
         std::cout << "Ð¥Ð¾Ñ‚Ð¸Ñ‚Ðµ Ð¿Ñ€Ð¾Ð´Ð¾Ð»Ð¶Ð¸Ñ‚ÑŒ? (y/n)\n";
       #elif _WIN32
-        std::cout << "ÃÃ°Ã®Ã¤Ã®Ã«Ã¦Ã¨Ã²Ã¼? (y/n)\n";
+        std::cout << "Õîòèòå ïðîäîëæèòü? (y/n)\n";
       #endif
       std::cin >> ans;
       if (ans != 'y')

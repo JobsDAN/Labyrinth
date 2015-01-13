@@ -55,7 +55,7 @@ char** getMap() {
   #ifdef __linux__
     std::cout << "Ğ’Ğ²ĞµĞ´Ğ¸Ñ‚Ğµ Ğ¿ÑƒÑ‚ÑŒ Ğº Ñ„Ğ°Ğ¹Ğ»Ñƒ ÑĞ¾Ğ´ĞµÑ€Ğ¶Ğ°Ñ‰ĞµĞ¼Ñƒ ĞºĞ°Ñ€Ñ‚Ñƒ: ";
   #elif _WIN32
-    std::cout << "Ã‚Ã¢Ã¥Ã¤Ã¨Ã²Ã¥ Ã¨Ã¬Ã¿ Ã´Ã Ã©Ã«Ã  Ã± ÃªÃ Ã°Ã²Ã®Ã©: ";
+    std::cout << "Ââåäèòå ïóòü ê ôàéëó, ñîäåğæàùåìó êàğòó: ";
   #endif
   std::cin >> name;
 
@@ -63,7 +63,7 @@ char** getMap() {
   #ifdef __linux__
     std::cout << "Ğ’Ğ°ÑˆĞ° ĞºĞ°Ñ€Ñ‚Ğ°: ";
   #elif _WIN32
-    std::cout << "Ã‚Ã Ã¸Ã  ÃªÃ Ã°Ã²Ã :" << '\n';
+    std::cout << "Âàøà êàğòà :" << '\n';
   #endif
   for (int i = 0; i < M; i++) {
     for (int j = 0; j < N; j++)
@@ -83,7 +83,7 @@ void printMap(char** map, int steps) {
   #ifdef __linux__
     std::cout << "\nĞšĞ¾Ğ»Ğ¸Ñ‡ĞµÑÑ‚Ğ²Ğ¾ ÑˆĞ°Ğ³Ğ¾Ğ²: " << steps;
   #elif _WIN32
-    std::cout << "\nÃŠÃ®Ã«Ã¨Ã·Ã¥Ã±Ã²Ã¢Ã® Ã¸Ã Ã£Ã®Ã¢: " << steps;
+    std::cout << "\nÊîëè÷åñòâî øàãîâ: " << steps;
   #endif
   return;
 }
