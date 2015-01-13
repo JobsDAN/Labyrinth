@@ -1,5 +1,6 @@
 // Copyright 2015 JobsDAN
 
+#include <time.h>
 #include <iostream>
 #include "./map.h"
 #include "./init.h"
@@ -19,6 +20,7 @@ char *door;
 int game(char** map) {
   position player, door = getPositionDoor(map);
   int steps = 0;
+  clock_t start = clock();
   printMap(map, steps);
   bool quit = false;
   while (!quit) {
@@ -32,7 +34,7 @@ int game(char** map) {
       printMap(map, ++steps);
     player = getPositionPlayer(map);
     if ((player.i == door.i) && (player.j == door.j))
-      return steps;
+      return clock() - start;
   }
   getch();
   return -1;

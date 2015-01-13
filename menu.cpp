@@ -21,7 +21,6 @@
 const int ENTER = 10 + WINDOWS*3;
 
 int load();
-int records();
 int exit();
 int resume();
 void printMenu(int i, std::string[], int size);
@@ -53,8 +52,8 @@ int menu(int (**choice)(), std::string *text, int size) {
   return -1;
 }
 
-int mainMenu() {
-  int (*choice[])() = {start, load, records, exit};
+int main() {
+  int (*choice[])() = {start, load, readRecords, exit};
   #ifdef __linux__
     std::string txt[] = {"Старт", "Загрузка", "Рекорды", "Выход"};
   #elif _WIN32
@@ -64,7 +63,7 @@ int mainMenu() {
 }
 
 int pauseMenu() {
-  int (*choice[])() = {resume, records, exit};
+  int (*choice[])() = {resume, readRecords, exit};
   #ifdef __linux__
     std::string txt[] = {"Продолжить", "Рекорды", "Выход"};
   #elif _WIN32
@@ -84,23 +83,6 @@ void printMenu(int current, std::string *text, int size) {
     else
       std::cout << text[i] << "\n";
   return;
-}
-
-int records() {
-  clean();
-  #ifdef __linux__
-    std::cout << "Лучшие результаты\n";
-  #elif _WIN32
-    std::cout << "������ ����������:\n";
-  #endif
-  readRecords();
-  #ifdef __linux__
-    std::cout << "Нажмите ESC для продолжения...\n";
-  #elif _WIN32
-    std::cout << "������� ESC ��� �����������. .\n";
-  #endif
-  while (getch() != 27) {}
-  return 0;
 }
 
 int resume() {
