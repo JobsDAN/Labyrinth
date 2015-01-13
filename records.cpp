@@ -11,9 +11,9 @@
   #include <conio.h>
 #endif
 
-void writeRecords(std::string name, int record) {
+void writeRecords(std::string text) {
   std::ofstream file("records.txt", std::ios_base::app);
-  file << name << " " << record << "\n";
+  file << name << "\n";
 }
 
 void readRecords() {

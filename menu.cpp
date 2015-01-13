@@ -4,10 +4,10 @@
 #include <stdlib.h>
 #include <iostream>
 #include <string>
-#include "menu.h"
-#include "start.h"
-#include "records.h"
-#include "clean.h"
+#include "./menu.h"
+#include "./start.h"
+#include "./records.h"
+#include "./clean.h"
 #ifdef __linux__
   #define WINDOWS 0
   #include "conio.h"

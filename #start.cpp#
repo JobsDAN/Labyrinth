@@ -28,9 +28,9 @@ int start() {
     if (stat != 'q') {
       char ans;
       #ifdef __linux__
-        std::cout << "\nВы победили!!!\nВведите Ваше имя:\n";
+        std::cout << "\nВы победили!!!\nВведите Ваше имя: ";
       #elif _WIN32
-        std::cout << "\nÂû ïîáåäèëè!!!\nÂâåäèòå âàøå èìÿ:\n";
+        std::cout << "\nÂû ïîáåäèëè!!!\nÂâåäèòå âàøå èìÿ: ";
       #endif
       std::string name;
       std::cin >> name;
@@ -38,7 +38,7 @@ int start() {
         writeRecords(name + stat);
       if (i == N_maps - 1) {
         #ifdef __linux__
-          std::cout << "\nВы прошли все уровни. Поздравляем!!\n"
+          std::cout << "\nВы прошли все уровни. Поздравляем!\n"
                     << "Нажмите любую клавишу для продолжения...";
         #elif _WIN32
           std::cout << "Âû ïðîøëè âñå êàðòû. Ïîçäðàâëÿåì!\n"

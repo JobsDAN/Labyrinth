@@ -17,7 +17,6 @@ int const ESC = 27;
 char *door;
 
 int game(char** map) {
-  // char** map = getMap();
   position player, door = getPositionDoor(map);
   int steps = 0;
   printMap(map, steps);
