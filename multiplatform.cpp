@@ -7,7 +7,7 @@
 #include <termios.h>
 #include <unistd.h>
 
-int getch() {
+int _getch() {
   struct termios oldt, newt;
   int ch;
   tcgetattr(STDIN_FILENO, &oldt);
@@ -18,4 +18,9 @@ int getch() {
   tcsetattr(STDIN_FILENO, TCSANOW, &oldt);
   return ch;
 }
+
+void setlocale(int a, char* b) {
+ return;
+}
+
 #endif

@@ -12,8 +12,8 @@ position getPositionPlayer(char** map) {
   for (int i = 0; i < M; i++)
     for (int j = 0; j < N; j++)
       if (map[i][j] == 'X') {
-        player.i = i;
-        player.j = j;
+        player.y = i;
+        player.x = j;
         return player;
       }
   return notfound;
@@ -24,9 +24,13 @@ position getPositionDoor(char** map) {
   for (int i = 0; i < M; i++)
     for (int j = 0; j < N; j++)
       if (map[i][j] == '-' || map[i][j] == '|') {
-        door.i = i;
-        door.j = j;
+        door.y = i;
+        door.x = j;
         return door;
       }
   return notfound;
+}
+
+bool equals(position a, position b) {
+  return (a.x == b.x) && (a.y == b.y);
 }

@@ -12,7 +12,7 @@
 #include "./game.h"
 #ifdef __linux__
   #define WINDOWS 0
-  #include "conio.h"
+  #include "multiplatform.h"
 #elif _WIN32
   #define WINDOWS 1
   #include <conio.h>
@@ -23,13 +23,12 @@ const int ENTER = 10 + WINDOWS*3;
 int load();
 int exit();
 int resume();
-void printMenu(int i, std::string[], int size);
 int mainMenu();
 int pauseMenu();
+void printMenu(int i, std::string[], int size);
 
 int menu(int (**choice)(), std::string *text, int size) {
-  int i = 0;
-  do {
+  for (int i = 0; ;) {
     printMenu(i, text, size);
     int key = _getch();
       switch (key) {
@@ -48,8 +47,19 @@ int menu(int (**choice)(), std::string *text, int size) {
               return 1;
           }
       }
-  } while (i >= 0 && i <= size-1);
+  }
   return -1;
+}
+
+void printMenu(int current, std::string *text, int size) {
+  setlocale(0, "");
+  clean();
+  for (int i = 0; i < size; i++)
+    if (i == current)
+      std::cout << "> " << text[i] << " < \n";
+    else
+      std::cout << text[i] << "\n";
+  return;
 }
 
 int main() {
@@ -70,19 +80,6 @@ int pauseMenu() {
     std::string txt[] = {"Продолжить", "Рекорды", "Выход"};
   #endif
   return menu(choice, txt, 3);
-}
-
-void printMenu(int current, std::string *text, int size) {
-  #ifdef _WIN32
-    setlocale(0, "");
-  #endif
-  clean();
-  for (int i = 0; i < size; i++)
-    if (i == current)
-      std::cout << "> " << text[i] << " < \n";
-    else
-      std::cout << text[i] << "\n";
-  return;
 }
 
 int resume() {

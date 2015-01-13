@@ -1,7 +1,8 @@
 struct position
 {
-  int i, j;
+  int x, y;
 };
 
 position getPositionPlayer(char** map); // Возвращает указатель на позицию игрока
 position getPositionDoor(char** map); // Возвращает указатель на выход
+bool equals(position, position);

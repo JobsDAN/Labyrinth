@@ -10,23 +10,23 @@ int move(char** map, int key) {
   position oldPos = nextPos;
   switch (key) {
     case 'w': case 'W':
-      nextPos.i--;
+      nextPos.y--;
       break;
     case 'a': case 'A':
-      nextPos.j--;
+      nextPos.x--;
       break;
     case 's': case 'S':
-      nextPos.i++;
+      nextPos.y++;
       break;
     case 'd': case 'D':
-      nextPos.j++;
+      nextPos.x++;
       break;
     default:
       break;
   }
-  char *pNextPos = &map[nextPos.i][nextPos.j];
+  char *pNextPos = &map[nextPos.y][nextPos.x];
   if (*pNextPos == ' ' || *pNextPos == '-' || *pNextPos == '|') {
-    map[oldPos.i][oldPos.j] = ' ';
+    map[oldPos.y][oldPos.x] = ' ';
     *pNextPos = 'X';
     return 1;
   }
