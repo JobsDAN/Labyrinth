@@ -5,6 +5,7 @@
 #include <string>
 #include <iostream>
 #include <map>
+#include <time.h>
 #include "clean.h"
 #ifdef __linux__
   #define WINDOWS 0
@@ -14,8 +15,13 @@
 #include <conio.h>
 #endif
 
-
 typedef std::map<std::string, int>::iterator itMap;
+
+long double printTime(std::string line, int lastSpace) {
+	std::string strRes = line.substr(lastSpace, '\n');
+	long double res = (strtod(strRes.c_str(), NULL)/CLOCKS_PER_SEC);
+	return res;
+}
 
 std::map<std::string,int> getRecords() {
 	std::ifstream file("records.txt");
@@ -62,12 +68,16 @@ int readRecords() {
   #endif
   std::ifstream file("records.txt");
   std::string line;
-  while (getline(file, line))
-    std::cout << line << "\n";
+  double res;
+  while (getline(file, line)) {
+    int lastSpace = line.rfind(' ');
+		std::string name = line.substr(0, lastSpace);
+    std::cout << name << " " << printTime(line, lastSpace) << "\n";
+  }
   #ifdef __linux__
     std::cout << "РќР°Р¶РјРёС‚Рµ ESC РґР»СЏ РїСЂРѕРґРѕР»Р¶РµРЅРёСЏ...\n";
   #elif _WIN32
-    std::cout << "Нажмите ESC для продолжения. .\n";
+    std::cout << "Нажмите ESC для продолжения. . .\n";
   #endif
   while (_getch() != 27) {}
   return 0;
