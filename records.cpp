@@ -16,28 +16,35 @@
 
 int findName(std::string line);
 
+typedef std::map<std::string, int>::iterator itMap;
+
+std::map<std::string,int> getRecords() {
+	std::ifstream file("records.txt");
+	std::map<std::string, int> records;
+	std::string line;
+	while(getline(file, line)) {
+		int lastSpace = line.rfind(' ');
+		std::string strRes = line.substr(lastSpace + 1, '\n');
+		std::string name = line.substr(0, lastSpace - 1);
+		long res = strtol(strRes.c_str(), NULL, 10);
+		records[name] = res;
+	}
+	return records;
+}
+
 void writeRecords(std::string text) {
-  std::ifstream file("records.txt");
-  std::string line;
-  std::map <std::string, int> record;
-  long tempTextRes = strtol((text.substr(text.rfind(' ') + 1, '\n')).c_str(), NULL, 10);
-  std::string tempTextName = text.substr(0, text.rfind(' '));
-  bool flag = false;
-  while (getline(file, line)) {
-	  std::string tempLineName = line.substr(0, line.rfind(' '));
-	  long tempLineRes = strtol((line.substr(line.rfind(' ') + 1, '\n')).c_str(), NULL, 10);
-	  record[tempLineName] = tempLineRes;
-	  if (tempLineName == tempTextName) {
-		  if (record[tempLineName] > tempTextRes)
-			  record[tempLineName] = tempTextRes;
-		  flag = true;
-	  }
-  }
-  if (!flag) {
-    std::ofstream file("records.txt", std::ios_base::app);
-    file << text << "\n";
-  }
-   return;         
+	int lastSpace = text.rfind(' ');
+	std::string name = text.substr(0, lastSpace - 1);
+	std::string strRes = text.substr(lastSpace + 1, text.length());
+	long res = strtol(strRes.c_str(), NULL, 10);
+	std::map<std::string, int> records = getRecords();
+	if (records[name] < res) {
+		records[name] = res;
+		std::ofstream file("records.txt");
+		for(itMap i = records.begin(); i != records.end(); i++) 
+			file << i->first << " " << i->second << "\n";
+	}
+	return;         
 }
 
 int readRecords() {
