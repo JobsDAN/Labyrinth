@@ -16,16 +16,17 @@
 #endif
 
 typedef std::map<std::string, int>::iterator itMap;
+const char fileRecords[] = "records.dat";
 
 long double printTime(std::string line, int lastSpace) {
 	std::string strRes = line.substr(lastSpace, '\n');
 	double res = strtod(strRes.c_str(), NULL);
-	long double time = (res/1000);
+	float time = (res/1000);
 	return time;
 }
 
 std::map<std::string,int> getRecords() {
-	std::ifstream file("records.txt");
+	std::ifstream file(fileRecords);
 	std::map<std::string, int> records;
 	std::string line;
 	while(getline(file, line)) {
@@ -44,16 +45,12 @@ void writeRecords(std::string text) {
 	std::string strRes = text.substr(lastSpace, '\n');
 	long res = strtol(strRes.c_str(), NULL, 10);
 	std::map<std::string, int> records = getRecords();
-	if (records.count(name) > 0 ) {
-		if (records[name] > res)
-			records[name] = res;
-		std::ofstream file("records.txt");
-		for (itMap i = records.begin(); i != records.end(); i++)
-			file << i->first << " " << i->second << "\n";
-	}
-	else {
+	
+	bool nameExist = records.count(name) > 0;
+	bool newRecord = records[name] > res;
+	if (!nameExist || newRecord) { // a -> b <=> !a || b
 		records[name] = res;
-		std::ofstream file("records.txt");
+		std::ofstream file(fileRecords);
 		for (itMap i = records.begin(); i != records.end(); i++)
 			file << i->first << " " << i->second << "\n";
 	}
@@ -67,13 +64,13 @@ int readRecords() {
   #elif _WIN32
     std::cout << "Ëó÷øèå ðåçóëüòàòû:\n";
   #endif
-  std::ifstream file("records.txt");
+  std::ifstream file(fileRecords);
   std::string line;
   double res;
   while (getline(file, line)) {
     int lastSpace = line.rfind(' ');
 		std::string name = line.substr(0, lastSpace);
-    std::cout << name << " " << printTime(line, lastSpace) << "\n";
+    std::cout << name << " " << printTime(line, lastSpace) << "s \n";
   }
   #ifdef __linux__
     std::cout << "ÐÐ°Ð¶Ð¼Ð¸Ñ‚Ðµ ESC Ð´Ð»Ñ Ð¿Ñ€Ð¾Ð´Ð¾Ð»Ð¶ÐµÐ½Ð¸Ñ...\n";
