@@ -66,6 +66,9 @@ int game(char** map) {
 
 void refreshMap(char** curMap, char** map) {
 	position player = getPositionPlayer(map);
+	for (int i = 1; i >= 0; i--)
+		for(int j = 1; j >= 0; j--)
+			activationLine(curMap, map, player, i, j);
 	for(int i = 0; i < M; i++)
 		for(int j = 0; j < N; j++) {
 			position point = {j,i};
@@ -74,10 +77,6 @@ void refreshMap(char** curMap, char** map) {
 			if (dark && see)
 				curMap[i][j] = map[i][j];
 		}
-
-	for (int i = 1; i >= 0; i--)
-		for(int j = 1; j >= 0; j--)
-			activationLine(curMap, map, player, i, j);
 }
 
 
