@@ -58,7 +58,7 @@ void printMenu(int current, std::string *text, int size) {
 	#ifdef __linux__
 		printBanner(" Л А Б И Р И Н Т ");
 	#elif _WIN32
-		printBanner(" Л А Б И Р И Н Т ");
+		printBanner(" �  �  �  �  Р �  �  � ");
 	#endif
   for (int i = 0; i < size; i++)
     if (i == current)
@@ -73,7 +73,7 @@ int main() {
 	#ifdef __linux__
 		std::string txt[] = {"РЎС‚Р°СЂС‚", "Р—Р°РіСЂСѓР·РєР°", "Р РµРєРѕСЂРґС‹", "Р’С‹С…РѕРґ"};
 	#elif _WIN32
-		std::string txt[] = {"Старт", "Загрузить", "Рекорды", "Выход"};
+		std::string txt[] = {"�����", "��������", "�������", "�����"};
 	#endif
 	return menu(choice, txt, 4);
 }
@@ -83,7 +83,7 @@ int pauseMenu() {
 	#ifdef __linux__
 		std::string txt[] = {"РџСЂРѕРґРѕР»Р¶РёС‚СЊ", "Р РµРєРѕСЂРґС‹", "Р’С‹С…РѕРґ"};
 	#elif _WIN32
-		std::string txt[] = {"Продолжить", "Рекорды", "Выход"};
+		std::string txt[] = {"�����", "�������", "�����"};
 	#endif
 	return menu(choice, txt, 3);
 }
