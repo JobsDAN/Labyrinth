@@ -1,5 +1,6 @@
 // Copyright 2015 JobsDAN
 
+#include <stdlib.h>
 #include <fstream>
 #include <string>
 #include <iostream>
@@ -19,23 +20,23 @@ void writeRecords(std::string text) {
   std::ifstream file("records.txt");
   std::string line;
   std::map <std::string, int> record;
-  record[text.substr(0, text.rfind(' '))] = strtol((text.substr(text.rfind(' ')+1, '\n')).c_str(), NULL, 10);
+  long tempTextRes = strtol((text.substr(text.rfind(' ') + 1, '\n')).c_str(), NULL, 10);
+  std::string tempTextName = text.substr(0, text.rfind(' '));
   bool flag = false;
   while (getline(file, line)) {
-    record[line.substr(0, line.rfind(' '))] = strtol((line.substr(line.rfind(' ')+1, '\n')).c_str(), NULL, 10);
-    if (line.substr(0, line.rfind(' ')) == text.substr(0, text.rfind(' ')))
-      flag = true;
-    }
+	  std::string tempLineName = line.substr(0, line.rfind(' '));
+	  long tempLineRes = strtol((line.substr(line.rfind(' ') + 1, '\n')).c_str(), NULL, 10);
+	  record[tempLineName] = tempLineRes;
+	  if (tempLineName == tempTextName) {
+		  if (record[tempLineName] > tempTextRes)
+			  record[tempLineName] = tempTextRes;
+		  flag = true;
+	  }
+  }
   if (!flag) {
     std::ofstream file("records.txt", std::ios_base::app);
     file << text << "\n";
   }
-  else
-    if (record[text.substr(0, text.rfind(' '))] > strtol((text.substr(text.rfind(' ')+1, '\n')).c_str(), NULL, 10)) {
-      record[text.substr(0, text.rfind(' '))] = strtol((text.substr(text.rfind(' ')+1, '\n')).c_str(), NULL, 10);
-      std::ofstream file("records.txt", std::ios_base::app);
-      file << text << "\n";
-    }
    return;         
 }
 

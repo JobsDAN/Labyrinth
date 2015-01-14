@@ -54,8 +54,6 @@ void pressAnyKey() {
     std::cout << "\nНажмите любую клавишу для продолжения. . .";
   #endif
   _getch();
-  _getch();
-
 }
 
 void printWinMessage() {
