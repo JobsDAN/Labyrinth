@@ -58,7 +58,7 @@ void printMenu(int current, std::string *text, int size) {
 	#ifdef __linux__
 		printBanner(" –õ –ê –ë –ò –† –ò –ù –¢ ");
 	#elif _WIN32
-		printBanner(" À  ¿  ¡  »  –† »  Õ  “ ");
+		printBanner(" À  ¿  ¡  »  –  »  Õ  “ ");
 	#endif
   for (int i = 0; i < size; i++)
     if (i == current)
