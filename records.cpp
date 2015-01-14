@@ -14,7 +14,6 @@
 #include <conio.h>
 #endif
 
-int findName(std::string line);
 
 typedef std::map<std::string, int>::iterator itMap;
 
@@ -24,8 +23,8 @@ std::map<std::string,int> getRecords() {
 	std::string line;
 	while(getline(file, line)) {
 		int lastSpace = line.rfind(' ');
-		std::string strRes = line.substr(lastSpace + 1, '\n');
-		std::string name = line.substr(0, lastSpace - 1);
+		std::string strRes = line.substr(lastSpace, '\n');
+		std::string name = line.substr(0, lastSpace);
 		long res = strtol(strRes.c_str(), NULL, 10);
 		records[name] = res;
 	}
@@ -34,14 +33,21 @@ std::map<std::string,int> getRecords() {
 
 void writeRecords(std::string text) {
 	int lastSpace = text.rfind(' ');
-	std::string name = text.substr(0, lastSpace - 1);
-	std::string strRes = text.substr(lastSpace + 1, text.length());
+	std::string name = text.substr(0, lastSpace);
+	std::string strRes = text.substr(lastSpace, '\n');
 	long res = strtol(strRes.c_str(), NULL, 10);
 	std::map<std::string, int> records = getRecords();
-	if (records[name] < res) {
+	if (records.count(name) > 0 ) {
+		if (records[name] > res)
+			records[name] = res;
+		std::ofstream file("records.txt");
+		for (itMap i = records.begin(); i != records.end(); i++)
+			file << i->first << " " << i->second << "\n";
+	}
+	else {
 		records[name] = res;
 		std::ofstream file("records.txt");
-		for(itMap i = records.begin(); i != records.end(); i++) 
+		for (itMap i = records.begin(); i != records.end(); i++)
 			file << i->first << " " << i->second << "\n";
 	}
 	return;         
