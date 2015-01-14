@@ -29,7 +29,7 @@ int start() {
   std::string maps[N_maps] = {"standart/1.map", "standart/2.map"};
   for (int i = 0; i < N_maps; i++) {
     char** map = readMap(maps[i]);
-    int res = game(map);
+	int res = game(map);
     if (res != 'q') {
       time += res;
       if (i == N_maps - 1) {
@@ -53,6 +53,7 @@ void pressAnyKey() {
   #elif _WIN32
     std::cout << "\nНажмите любую клавишу для продолжения. . .";
   #endif
+  _getch();
   _getch();
 
 }

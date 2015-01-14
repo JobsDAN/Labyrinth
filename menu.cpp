@@ -39,7 +39,7 @@ int menu(int (**choice)(), std::string *text, int size) {
           i = (i == size-1) ? 0 : i+1;
           break;
         case ENTER:
-          int a = (*choice[i])(); 
+		  int a = (*choice[i])(); 
           switch (a) {
             case 'q':
               return 'q';
