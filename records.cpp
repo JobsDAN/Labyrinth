@@ -19,8 +19,9 @@ typedef std::map<std::string, int>::iterator itMap;
 
 long double printTime(std::string line, int lastSpace) {
 	std::string strRes = line.substr(lastSpace, '\n');
-	long double res = (strtod(strRes.c_str(), NULL)/CLOCKS_PER_SEC);
-	return res;
+	double res = strtod(strRes.c_str(), NULL);
+	long double time = (res/1000);
+	return time;
 }
 
 std::map<std::string,int> getRecords() {

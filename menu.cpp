@@ -26,7 +26,7 @@ int resume();
 int mainMenu();
 int pauseMenu();
 void printMenu(int i, std::string[], int size);
-void printBanner(std::string);
+void printBanner();
 	
 int menu(int (**choice)(), std::string *text, int size) {
   for (int i = 0; ;) {
@@ -53,27 +53,23 @@ int menu(int (**choice)(), std::string *text, int size) {
 }
 
 void printMenu(int current, std::string *text, int size) {
-  clean();
-  setlocale(0, "");
-	#ifdef __linux__
-		printBanner(" Л А Б И Р И Н Т ");
-	#elif _WIN32
-		printBanner(" �  �  �  �  �  �  �  � ");
-	#endif
-  for (int i = 0; i < size; i++)
-    if (i == current)
-      std::cout << "> " << text[i] << " < \n";
-    else
-      std::cout << text[i] << "\n";
-  return;
+	clean();
+	setlocale(0, "");
+	printBanner();
+	for (int i = 0; i < size; i++)
+		if (i == current)
+			std::cout << "> " << text[i] << " < \n";
+		else
+			std::cout << text[i] << "\n";
+	return;
 }
 
 int main() {
 	int (*choice[])() = {start, load, readRecords, exit};
 	#ifdef __linux__
-		std::string txt[] = {"РЎС‚Р°СЂС‚", "Р—Р°РіСЂСѓР·РєР°", "Р РµРєРѕСЂРґС‹", "Р’С‹С…РѕРґ"};
+		std::string txt[] = {"Старт", "Загрузить", "Рекорды", "Выход"};
 	#elif _WIN32
-		std::string txt[] = {"�����", "��������", "�������", "�����"};
+		std::string txt[] = {"Старт", "Загрузить", "Рекорды", "Выход"};
 	#endif
 	return menu(choice, txt, 4);
 }
@@ -81,14 +77,19 @@ int main() {
 int pauseMenu() {
 	int (*choice[])() = {resume, readRecords, exit};
 	#ifdef __linux__
-		std::string txt[] = {"РџСЂРѕРґРѕР»Р¶РёС‚СЊ", "Р РµРєРѕСЂРґС‹", "Р’С‹С…РѕРґ"};
+		std::string txt[] = {"Продолжить", "Рекорды", "Выход"};
 	#elif _WIN32
-		std::string txt[] = {"�����", "�������", "�����"};
+		std::string txt[] = {"Продолжить", "Рекорды", "Выход"};
 	#endif
 	return menu(choice, txt, 3);
 }
 
-void printBanner(std::string text) {
+void printBanner() {
+	#ifdef __linux__
+		std::string text = " Л А Б И Р И Н Т ";
+	#elif _WIN32
+		std::string text = " Л А Б И Р И Н Т ";
+	#endif
 	int l = text.length();
 	std::string line;
 	for(int i = 0; i < 17; i++)

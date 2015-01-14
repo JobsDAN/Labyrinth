@@ -16,7 +16,7 @@
 
 int game(char** map);
 
-const int N_maps = 2;
+const int N_maps = 3;
 
 void printWinMessage();
 void pressAnyKey();
@@ -26,9 +26,9 @@ int start() {
     setlocale(0, "");
   #endif
   double time = 0;
-  std::string maps[N_maps] = {"standart/1.map", "standart/2.map"};
+  std::string maps[N_maps] = {"1", "2", "3"};
   for (int i = 0; i < N_maps; i++) {
-    char** map = readMap(maps[i]);
+    char** map = readMap("standart/" + maps[i] + ".map");
 	int res = game(map);
     if (res != 'q') {
       time += res;
@@ -42,7 +42,6 @@ int start() {
         pressAnyKey();
         return 1;
       }
-	  std::cout << time;
     }
   }
   return 0;

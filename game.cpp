@@ -2,7 +2,6 @@
 
 #include <time.h>
 #include <cmath>
-#include <iostream>
 #include <vector>
 #include "./map.h"
 #include "./init.h"
@@ -128,7 +127,10 @@ bool canSee(char** map, position a, position b) {
     for (int x = a.x; x < b.x; x++)
     {
 		position current = {x, y};
-		if (map[(steep ? x : y)][(steep ? y : x)] == '#' && !equals(current, a) && !equals(current, b))
+		bool firts = equals(current, a);
+		bool last = equals(current, b);
+		bool wall = map[(steep ? x : y)][(steep ? y : x)] == '#';
+		if (wall && !firts && !last)
 			return 0;
 		error -= dy;
         if (error < 0)
