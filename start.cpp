@@ -32,7 +32,7 @@ int start() {
 		char** map = readMap("standart/" + maps[i] + ".map");
 		int res = game(map);
 		if (res == 'q')
-			return 'q';
+			return 2;
 		else {
 			time += res;
 			if (i == N_maps - 1)

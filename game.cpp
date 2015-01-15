@@ -18,6 +18,7 @@
 
 int const ESC = 27;
 char *door;
+double const r = 3.9; 
 
 void refreshMap(char** curMap, char** map); 
 bool inDark(char** curMap, char** map, position p);
@@ -83,13 +84,12 @@ void activationLine(char** curMap, char** map, position p, bool row, bool plus) 
 	int d = (plus ? 1 : -1);
 	int x = p.x;
 	int y = p.y;
-	while (map[y][x] != '#' && map[y][x] != '|' && map[y][x] != '-') {
+	int i = 0;
+	while (map[y][x] != '#' && map[y][x] != '|' && map[y][x] != '-' && i < r) {
+		i++;
 		position pos = {x, y};
 		activationU(curMap, map, pos);
-		if (row) 
-			x += d;
-		else
-			y += d;
+		(row ? x : y) += d;
 	}
 }
 
@@ -119,13 +119,17 @@ bool canSee(char** map, position a, position b) {
 		swap(&a.x, &b.x);
 		swap(&a.y, &b.y);
 	}
-    int dx = b.x - a.x;
-    int dy = std::abs(b.y - a.y);
-    int error = dx / 2; 
-    int ystep = (a.y < b.y) ? 1 : -1; 
+	int dx = b.x - a.x;
+	int dy = std::abs(b.y - a.y);
+	int dx2 = dx*dx;
+	int dy2 = dy*dy;
+	double l = sqrt(dx2+dy2);
+	if (l > r)
+		return 0;
+	int error = dx / 2; 
+	int ystep = (a.y < b.y) ? 1 : -1; 
 	int y = a.y;
-    for (int x = a.x; x < b.x; x++)
-    {
+	for (int x = a.x; x < b.x; x++) {
 		position current = {x, y};
 		bool firts = equals(current, a);
 		bool last = equals(current, b);
@@ -133,12 +137,11 @@ bool canSee(char** map, position a, position b) {
 		if (wall && !firts && !last)
 			return 0;
 		error -= dy;
-        if (error < 0)
-        {
-            y += ystep;
-            error += dx;
-        }
-    }
+		if (error < 0) {
+			y += ystep;
+			error += dx;
+		}
+	}
 }
 
 void swap(int *a, int *b) {
