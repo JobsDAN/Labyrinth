@@ -69,7 +69,7 @@ int main() {
 	#ifdef __linux__
 		std::string txt[] = {"Старт", "Загрузить", "Рекорды", "Выход"};
 	#elif _WIN32
-		std::string txt[] = {"Старт", "Загрузить", "Рекорды", "Выход"};
+		std::string txt[] = {"�����", "���������", "�������", "�����"};
 	#endif
 	return menu(choice, txt, 4);
 }
@@ -79,16 +79,16 @@ int pauseMenu() {
 	#ifdef __linux__
 		std::string txt[] = {"Продолжить", "Рекорды", "Выход"};
 	#elif _WIN32
-		std::string txt[] = {"Продолжить", "Рекорды", "Выход"};
+		std::string txt[] = {"����������", "�������", "�����"};
 	#endif
 	return menu(choice, txt, 3);
 }
 
 void printBanner() {
 	#ifdef __linux__
-		std::string text = " Л А Б И Р И Н Т ";
+		std::string text = " Л а б и р и н т ";
 	#elif _WIN32
-		std::string text = " Л А Б И Р И Н Т ";
+		std::string text = " � � � � � � � � ";
 	#endif
 	int l = text.length();
 	std::string line;
