@@ -78,7 +78,7 @@ void refreshMap(char** curMap, char** map) {
 			bool dark = inDark(curMap, map, point);
 			bool see = canSee(map, player, point);
 			if (dark && see)
-				curMap[i][j] = map[i][j];
+				activationPos(curMap, map, point);
 		}
 }
 
