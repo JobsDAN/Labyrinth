@@ -11,9 +11,17 @@
 #ifdef __linux__
 	#define WINDOWS 0
 	#include "multiplatform.h"
+	int const W = 134;
+	int const A = 132;
+	int const S = 139;
+	int const D = 178;
 #elif _WIN32
 	#define WINDOWS 1
 	#include <conio.h>
+	int const W = 230;
+	int const A = 228;
+	int const S = 235;
+	int const D = 162;
 #endif
 
 int const ESC = 27;
