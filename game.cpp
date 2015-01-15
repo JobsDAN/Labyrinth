@@ -43,13 +43,16 @@ int game(char** map) {
 	printMap(curMap);
 	while (true) {
 		int key = _getch();
-		if (key == ESC)
+		if (key == ESC) {
+		clock_t pause = clock();
 			if (pauseMenu() == 'q'){
+				start -= clock() - pause;
 				delete curMap;
 				return 'q';
 			}
 			else
 				printMap(curMap);
+		}
 		if (move(curMap, key)){
 			move(map, key);
 			if (equals(getPositionPlayer(curMap), door)){
