@@ -25,16 +25,16 @@ int move(char** map, int key) {
 	position nextPos = getPositionPlayer(map);
 	position oldPos = nextPos;
 	switch (key) {
-		case 'w': case 'W': case W:
+		case 'w': case 'W': case 'k': case W:
 			nextPos.y--;
 			break;
-		case 'a': case 'A': case A:
+		case 'a': case 'A': case 'h': case A:
 			nextPos.x--;
 			break;
-		case 's': case 'S': case S:
+		case 's': case 'S': case 'j': case S:
 			nextPos.y++;
 			break;
-		case 'd': case 'D': case D:
+		case 'd': case 'D': case 'l': case D:
 			nextPos.x++;
 			break;
 		default:

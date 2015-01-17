@@ -11,11 +11,19 @@
 #include "./map.h"
 #include "./game.h"
 #ifdef __linux__
-  #define WINDOWS 0
-  #include "multiplatform.h"
+	#define WINDOWS 0
+	#include "multiplatform.h"
+	int const W = 134;
+	int const A = 132;
+	int const S = 139;
+	int const D = 178;
 #elif _WIN32
-  #define WINDOWS 1
-  #include <conio.h>
+	#define WINDOWS 1
+	#include <conio.h>
+	int const W = 230;
+	int const A = 228;
+	int const S = 235;
+	int const D = 162;
 #endif
 
 const int ENTER = 10 + WINDOWS*3;
@@ -29,27 +37,27 @@ void printMenu(int i, std::string[], int size);
 void printBanner();
 	
 int menu(int (**choice)(), std::string *text, int size) {
-  for (int i = 0; ;) {
-    printMenu(i, text, size);
-    int key = _getch();
-      switch (key) {
-        case 'w': case 'W':
-          i = (i == 0) ? size-1 : i-1;
-          break;
-        case 's': case 'S':
-          i = (i == size-1) ? 0 : i+1;
-          break;
-        case ENTER:
-		  int a = (*choice[i])(); 
-          switch (a) {
-            case 'q':
-              return 'q';
-            case 'r':
-              return 1;
-          }
-      }
-  }
-  return -1;
+	for (int i = 0; ;) {
+	printMenu(i, text, size);
+	int key = _getch();
+		switch (key) {
+			case 'w': case 'W': case 'k': case W:
+				i = (i == 0) ? size-1 : i-1;
+				break;
+			case 's': case 'S': case 'j': case S:
+				i = (i == size-1) ? 0 : i+1;
+				break;
+			case ENTER:
+				int a = (*choice[i])(); 
+				switch (a) {
+					case 'q':
+						return 'q';
+					case 'r':
+						return 1;
+				}
+		}
+	}
+	return -1;
 }
 
 void printMenu(int current, std::string *text, int size) {
