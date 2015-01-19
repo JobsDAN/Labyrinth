@@ -1,12 +1,13 @@
 // Copyright 2015 JobsDAN
 
 #include <stdlib.h>
+#include <time.h>
 #include <fstream>
 #include <string>
 #include <iostream>
 #include <map>
-#include <time.h>
 #include "clean.h"
+
 #ifdef __linux__
   #define WINDOWS 0
   #include "multiplatform.h"
