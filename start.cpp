@@ -27,7 +27,7 @@ void lastMap(int time);
 int start() {
 	setlocale(0, "");
 	double time = 0;
-	std::string maps[N_maps] = {"1", "2", "3"};
+	std::string maps[N_maps] = {"easy", "normal", "hard"};
 	for (int i = 0; i < N_maps; i++) {
 		char** map = readMap("standart/" + maps[i] + ".map");
 		int res = game(map);
