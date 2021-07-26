@@ -153,6 +153,8 @@ bool canSee(char** map, position a, position b) {
 			error += dx;
 		}
 	}
+
+	return 1;
 }
 
 void swap(int *a, int *b) {
